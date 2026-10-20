@@ -1,0 +1,28 @@
+[gd_resource type="ArrayMesh" format=4 uid="uid://b5dnlm3qi1swq"]
+
+[ext_resource type="Texture2D" uid="uid://dbcykt1wohh4n" path="res://assets/models/objects/trap_trap_01_d.png" id="1_nfo1f"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rsuo8"]
+resource_name = "trap"
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+cull_mode = 2
+specular_mode = 2
+albedo_texture = ExtResource("1_nfo1f")
+texture_filter = 2
+
+[resource]
+resource_name = "trap_base"
+_surfaces = [{
+"aabb": AABB(-0.75986236, -0.06937533, -0.762784, 1.5206399, 0.119368374, 1.5206399),
+"attribute_data": PackedByteArray("ZNt3OyP7Tz9W7k8/o/tfN1buTz8j+08/ZNt3O6P7Xze+3XU7o/tfP032Tz+iIVA/TfZPP6P7Xz++3XU7oiFQP9uWZT/lsvc+uJpxPxq9lDrblmU/Gr2UOriacT/lsvc+KtN+PxJ9FrpNz3I/6fz2PirTfj/p/PY+Tc9yPxJ9FrpmYlg/KXt4OkJmZD9mmvc+ZmJYP2aa9z5CZmQ/KXt4Og=="),
+"format": 34359742487,
+"index_count": 30,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEA"),
+"material": SubResource("StandardMaterial3D_rsuo8"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 20,
+"vertex_data": PackedByteArray("V4ZCv5jDTD3YAkI/UsJCP4HFTD3QRUO/UsJCP4HFTD3YAkI/V4ZCv5jDTD3QRUO/V4ZCv6cUjr3YAkI/UsJCP4HFTD3YAkI/UsJCP6cUjr3YAkI/V4ZCv5jDTD3YAkI/UsJCP6cUjr3YAkI/UsJCP4HFTD3QRUO/UsJCP6cUjr3QRUO/UsJCP4HFTD3YAkI/UsJCP6cUjr3QRUO/V4ZCv5jDTD3QRUO/V4ZCv6cUjr3QRUO/UsJCP4HFTD3QRUO/V4ZCv6cUjr3QRUO/V4ZCv5jDTD3YAkI/V4ZCv6cUjr3YAkI/V4ZCv5jDTD3QRUO//H/+/wAA/b/8f/7/AAD9v/x//v8AAP2//H/+/wAA/b8AgP9//n8AgACA/3/+fwCAAID/f/5/AIAAgP9//n8AgP7/AoABgP+//v8CgAGA/7/+/wKAAYD/v/7/AoABgP+////+/wCAAID///7/AIAAgP///v8AgACA///+/wCAAIABAP9/AID/vwEA/38AgP+/AQD/fwCA/78BAP9/AID/vw==")
+}]

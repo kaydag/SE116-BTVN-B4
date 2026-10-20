@@ -1,0 +1,120 @@
+[gd_scene format=3 uid="uid://b3ydq6el35r7g"]
+
+[ext_resource type="ArrayMesh" path="res://assets/models/objects/trap_base.tres" id="1_base"]
+[ext_resource type="ArrayMesh" path="res://assets/models/objects/trap_spikes.tres" id="2_spikes"]
+[ext_resource type="Script" uid="uid://bvv36o7f0oebf" path="res://scripts/hit_area_3d.gd" id="1_qrj0g"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nfo1f"]
+size = Vector3(1.4, 0.5, 1.4)
+
+[sub_resource type="Animation" id="Animation_reset"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Spikes:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -0.55, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Spikes:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HitArea3D/CollisionShape3D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_cycle"]
+resource_name = "cycle"
+length = 3.0
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Spikes:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5, 1.6, 2.6, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, -0.55, 0), Vector3(0, -0.55, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, -0.55, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Spikes:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HitArea3D/CollisionShape3D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.6, 2.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_trap"]
+_data = {
+&"RESET": SubResource("Animation_reset"),
+&"cycle": SubResource("Animation_cycle")
+}
+
+[node name="Trap" type="Node3D" unique_id=192447137]
+
+[node name="Base" type="MeshInstance3D" parent="." unique_id=1342939611]
+mesh = ExtResource("1_base")
+
+[node name="Spikes" type="MeshInstance3D" parent="." unique_id=1730518842]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.55, 0)
+visible = false
+mesh = ExtResource("2_spikes")
+
+[node name="HitArea3D" type="Area3D" parent="." unique_id=513652474]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("1_qrj0g")
+metadata/_custom_type_script = "uid://bvv36o7f0oebf"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HitArea3D" unique_id=1158212494]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+shape = SubResource("BoxShape3D_nfo1f")
+disabled = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=880214653]
+libraries/ = SubResource("AnimationLibrary_trap")
+autoplay = "cycle"

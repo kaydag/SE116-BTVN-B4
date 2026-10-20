@@ -1,0 +1,36 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scenes/enemies/pelican/pelican_bullet.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://bvv36o7f0oebf" path="res://scripts/hit_area_3d.gd" id="2_hit"]
+[ext_resource type="Texture2D" uid="uid://dkypf11ypwn8c" path="res://assets/monsters/pelican/pelican_bullet.png" id="3_tex"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_body"]
+radius = 0.2
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_hit"]
+radius = 0.3
+
+[node name="PelicanBullet" type="RigidBody3D"]
+collision_layer = 32
+gravity_scale = 0.0
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("1_script")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+pixel_size = 0.0625
+billboard = 1
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("3_tex")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_body")
+
+[node name="HitArea3D" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("2_hit")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HitArea3D"]
+shape = SubResource("SphereShape3D_hit")
